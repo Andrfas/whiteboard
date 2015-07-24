@@ -1,6 +1,6 @@
-var app = angular.module('mainApp', ['ngRoute']);
+var app = angular.module('mainApp', ['ngRoute', 'ngFileUpload', 'ngLocale']);
 
-app.config(['$routeProvider', function($routeProvider) {
+angular.module('mainApp').config(['$routeProvider', function($routeProvider) {
     $routeProvider.
         when('/', {
             templateUrl:'pages/postList.html',
@@ -19,3 +19,17 @@ app.config(['$routeProvider', function($routeProvider) {
             controller:'WhiteboardPageController'
         })
 }])
+
+
+/*
+    TODO
+    - вставка изображения по ссылке
+    - ресайз изображения
+    - обрезание изображения
+
+    - стрелки прямые
+    - стрелки рисованные вручную
+
+    - смена размера шрифта в текстовом стикере
+    - смена цвета текста
+*/

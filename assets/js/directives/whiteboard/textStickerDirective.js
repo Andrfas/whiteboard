@@ -1,11 +1,9 @@
-app.directive('textSticker', ['$document', 'wbStickerService', function($document, wbStickerService) {
+angular.module('mainApp').directive('textSticker', ['$document', 'wbStickerService', function($document, wbStickerService) {
   return {
     restrict:'E',
-    template: '<span id="closeButton">Close</span><p id="textPane" ng-hide="isTextTyping">Text: {{text}}</p><textarea id="textArea" text="text" ng-model="text" ng-show="isTextTyping"></textarea>',
-    scope: {
-        stickerText:'=text'
-    },
-    controller: function($scope) {
+    template: '<span id="closeButton">Close</span><p id="textPane" ng-hide="isTextTyping">Text: {{text}}</p><textarea id="textArea" ng-model="text" ng-show="isTextTyping"></textarea>',
+    scope: true,
+    controller: ['$scope', function($scope) {
         this.setText = function(text) {
             $scope.text = text;
         };
@@ -21,7 +19,7 @@ app.directive('textSticker', ['$document', 'wbStickerService', function($documen
         this.setFocus = function() {
             $scope.setFocus();
         };
-    },
+    }],
     link: function(scope, element, attrs) {
         var startX = 0, startY = 0, x = 0, y = 0;
         var pane = element[0].querySelector('#textPane');
@@ -84,8 +82,6 @@ app.directive('textSticker', ['$document', 'wbStickerService', function($documen
             $document.off('mouseup', mouseup);
         }
 
-
-
         angular.element(closeButton).on('mousedown', function() {
             mousedownTime = new Date();
             angular.element(closeButton).on('mouseup', function closeMouseup() {
@@ -93,6 +89,7 @@ app.directive('textSticker', ['$document', 'wbStickerService', function($documen
                 if (new Date() - mousedownTime > 250) {
                     return;
                 }
+
                 wbStickerService.deleteTextSticker(scope.wbId, scope.id);
                 element.remove();
             });

@@ -1,4 +1,4 @@
-app.controller('AuthenticationController', ['$scope', '$http', function($scope, $http) {
+angular.module('mainApp').controller('AuthenticationController', ['$scope', '$http', function($scope, $http) {
     $scope.signIn = function() {
         $http.post('/authentication', {
             email: $scope.email,

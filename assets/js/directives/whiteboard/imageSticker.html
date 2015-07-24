@@ -1,3 +1,4 @@
-<input type="file">
-<button type="submit">Upload</button>
-<img ng-src="">
+<span id="closeButton">Close</span>
+<input id="inputField" type="file" ng-model="imgUrl" ng-show="isEditing">
+<button ng-click="uploadImg(imgUrl)" ng-show="isEditing">Upload</button>
+<img id="image" ng-src="{{imgUrl}}" ng-hide="isEditing">

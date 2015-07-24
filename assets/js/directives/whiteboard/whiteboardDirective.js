@@ -1,12 +1,9 @@
-app.directive('whiteboard', ['$compile', 'wbStickerService', function($compile, wbStickerService) {
+angular.module('mainApp').directive('whiteboard', ['wbStickerService', function(wbStickerService) {
   return {
     restrict:'E',
     templateUrl: '/js/directives/whiteboard/whiteboard.html',
     scope: {
         wbId:'=wbId'
-    },
-    controller: function($scope) {
-
     },
     link: function(scope, element, attrs) {
         wbStickerService.getStickers(scope.wbId, scope, appendStickers);
@@ -19,6 +16,16 @@ app.directive('whiteboard', ['$compile', 'wbStickerService', function($compile, 
                 ngSticker.controller('textSticker').setFocus();
                 //TODO append отбирает фокус, желательно устанавливать фокус в createTextSticker
             });
+        }
+
+        scope.createImageSticker = function() {
+            var ngSticker;
+            ngSticker = wbStickerService.createImageSticker(scope, scope.wbId, 100, 200, function(ngSticker) {
+                appendStickers(ngSticker);
+                ngSticker.controller('imageSticker').setFocus();
+                //TODO append отбирает фокус, желательно устанавливать фокус в createTextSticker
+            });
+
         }
 
         function appendStickers(stickers) {

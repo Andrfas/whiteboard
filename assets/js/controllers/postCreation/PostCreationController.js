@@ -1,4 +1,4 @@
-app.controller('PostCreationController', ['$scope', '$http', '$window', function($scope, $http, $window) {
+angular.module('mainApp').controller('PostCreationController', ['$scope', '$http', '$window', function($scope, $http, $window) {
     $scope.createPost = function() {
         $http.post('/post', {
             title:$scope.title,

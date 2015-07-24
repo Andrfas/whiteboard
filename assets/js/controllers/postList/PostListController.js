@@ -1,4 +1,4 @@
-app.controller('PostListController', ['$scope', '$http', function($scope, $http) {
+angular.module('mainApp').controller('PostListController', ['$scope', '$http', function($scope, $http) {
     $scope.posts = [];
     $http.get('/post').
         success(function(data) {

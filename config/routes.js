@@ -39,7 +39,15 @@ module.exports.routes = {
   '/authentication': 'AuthenticationController.auth',
   'get /whiteboard':'WhiteboardController.getStickers',
   'post /whiteboard/text-sticker/create':'WhiteboardController.createTextSticker',
-  'post /whiteboard/text-sticker/update':'WhiteboardController.updateTextSticker'
+  'post /whiteboard/text-sticker/update':'WhiteboardController.updateTextSticker',
+  'post /whiteboard/text-sticker/delete':'WhiteboardController.deleteTextSticker',
+
+  'post /whiteboard/image-sticker/create':'WhiteboardController.createImageSticker',
+  'post /whiteboard/image-sticker/upload-image': 'WhiteboardController.uploadStickerImage',
+  'get /whiteboard/image-sticker/download-image/:imageFd': 'WhiteboardController.downloadStickerImage',
+  'post /whiteboard/image-sticker/update-sticker':'WhiteboardController.updateImageSticker',
+  'post /whiteboard/image-sticker/delete': 'WhiteboardController.deleteImageSticker'
+  // 'get /whiteboard/image-sticker/:stickerId':'WhiteboardController.getImageSticker'
 
   /***************************************************************************
   *                                                                          *
